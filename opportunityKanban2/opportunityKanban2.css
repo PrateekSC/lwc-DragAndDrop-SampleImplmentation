@@ -1,0 +1,135 @@
+/* Main container for the Kanban board */
+.kanban {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  height: 100%;
+  background-color: #f4f6f9;
+  border-radius: 8px;
+}
+
+/* Individual columns for each stage */
+.kanban-column {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+  min-width: 250px;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.kanban-column:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Title (Stage name) at the top of each column */
+.kanban-column h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+  text-align: center;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+/* Card container inside each column */
+.kanban-column .kanban-card {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  cursor: grab;
+  transition: transform 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.kanban-column .kanban-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Card title (Opportunity name) */
+.kanban-card strong {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #0070d2;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+/* Card details (Amount and Close Date) */
+.kanban-card span {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* Dragging effect for the card */
+.kanban-card:active {
+  opacity: 0.7;
+}
+
+/* Hover effect on columns to allow drop */
+.kanban-column[data-stage]:hover {
+  background-color: #e9f0ff;
+}
+
+/* Ensure that columns are scrollable if content exceeds screen size */
+.kanban {
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 20px;
+}
+
+.kanban-column {
+  max-height: 80vh;
+  overflow-y: auto;
+  min-width: 280px;
+}
+
+/* Responsiveness - make the kanban columns stack on smaller screens */
+@media (max-width: 1200px) {
+  .kanban {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .kanban-column {
+    min-width: 100%;
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .kanban-column {
+    padding: 0.5rem;
+    min-width: 100%;
+  }
+
+  .kanban-card {
+    font-size: 0.9rem;
+    padding: 0.5rem;
+  }
+
+  .kanban-column h3 {
+    font-size: 1rem;
+  }
+}
+
+/* Add a subtle background color to the main kanban area */
+.kanban {
+  background-color: #f7f9fc;
+}
+
+/* Add an arrow cursor when dragging */
+.kanban-card:active {
+  cursor: grabbing;
+}

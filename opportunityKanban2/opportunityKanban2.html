@@ -1,0 +1,36 @@
+<template>
+  <div class="kanban">
+    <template for:each={columns} for:item="col">
+      <div
+        key={col.stage}
+        class="kanban-column"
+        data-stage={col.stage}
+        ondrop={handleDrop}
+        ondragover={allowDrop}
+      >
+        <h3>{col.stage}</h3>
+        <template if:true={col.opportunities}>
+          <template for:each={col.opportunities} for:item="opp">
+            <div
+              key={opp.Id}
+              class="kanban-card"
+              draggable="true"
+              data-id={opp.Id}
+              ondragstart={handleDragStart}
+              ondrop={handleDrop}
+              ondragover={allowDrop}
+            >
+              <strong 
+                data-id={opp.Id} 
+                onclick={handleOpportunityClick} 
+                style="cursor: pointer; text-decoration: none; color: #0070d2;">
+                {opp.Name}
+              </strong><br />
+              ${opp.Amount} — {opp.CloseDate}
+            </div>
+          </template>
+        </template>
+      </div>
+    </template>
+  </div>
+</template>
